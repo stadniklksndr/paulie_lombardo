@@ -1,0 +1,7 @@
+class AddPaulieNotesCount < ActiveRecord::Migration[<%= ActiveRecord::Migration.current_version %>]
+  def change
+    <%- tables.each do |table_name| -%>
+    add_column :<%= table_name.tableize %>, :paulie_notes_count, :integer, default: 0, null: false
+    <%- end -%>
+  end
+end

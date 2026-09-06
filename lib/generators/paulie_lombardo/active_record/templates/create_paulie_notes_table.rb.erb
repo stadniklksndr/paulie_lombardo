@@ -1,0 +1,39 @@
+class CreatePaulieNotes < ActiveRecord::Migration[<%= ActiveRecord::Migration.current_version %>]
+  def change
+    create_table :paulie_notes do |t|
+      t.string "noteable_id", null: false
+      t.string "noteable_type", null: false
+
+      t.string :session_hash
+      t.string :request_hash, null: false
+
+      if table_exists?(:users)
+        t.references :user, foreign_key: true, null: true, index: false
+      end
+
+      t.text :referrer
+      t.date :viewed_on, null: false
+
+      t.timestamps
+    end
+
+    add_index :paulie_notes,
+      [:request_hash, :noteable_type, :noteable_id, :viewed_on],
+      where: "session_hash IS NULL",
+      name: "idx_paulie_notes_on_request_noteable_viewed_and_no_session"
+
+    add_index :paulie_notes,
+      [:session_hash, :noteable_type, :noteable_id, :viewed_on],
+      name: "idx_paulie_notes_on_session_noteable_and_viewed"
+
+    if column_exists?(:paulie_notes, :user_id)
+      add_index :paulie_notes,
+        [:user_id, :noteable_type, :noteable_id, :viewed_on],
+        name: "idx_paulie_notes_on_user_noteable_and_viewed"
+    end
+
+    add_index :paulie_notes,
+      [:noteable_type, :noteable_id, :viewed_on],
+      name: "idx_paulie_notes_on_noteable_and_viewed"
+  end
+end
