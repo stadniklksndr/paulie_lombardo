@@ -1,15 +1,14 @@
 [![Gem Version](https://badge.fury.io/rb/paulie_lombardo.svg)](https://badge.fury.io/rb/paulie_lombardo)
 [![CI](https://github.com/stadniklksndr/paulie_lombardo/actions/workflows/ci.yml/badge.svg)](https://github.com/stadniklksndr/paulie_lombardo/actions/workflows/ci.yml)
 
-# paulie_lombardo 🕵️‍♂️
+# Paulie Lombardo 🕵️‍♂️
 
 > **A lightweight, ActiveRecord-only Ruby gem for tracking the count of page views in Rails applications.**
 <br/>
 
 🔍 **Looking for a simple Rails page view counter?**
 
-If you are looking for an **impressionist alternative** or need to **track daily page views in Rails**, Paulie is built specifically for this job. 
-Unlike heavy analytics engines or gems that require Redis/Memcached infrastructure, **Paulie relies purely on ActiveRecord** (PostgreSQL, MySQL, SQLite).
+If you are looking for an **impressionist alternative** or need to **track daily page views in Rails**, Paulie is built specifically for this job. Unlike heavy analytics engines or gems that require Redis/Memcached infrastructure, **PaulieLombardo is a simple Rails page view counter that relies purely on ActiveRecord** (PostgreSQL, MySQL, SQLite).
 
 <br>
 

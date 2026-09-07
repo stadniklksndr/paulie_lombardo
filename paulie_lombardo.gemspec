@@ -5,11 +5,9 @@ require_relative "lib/paulie_lombardo/version"
 Gem::Specification.new do |spec|
   spec.name = "paulie_lombardo"
   spec.version = PaulieLombardo::VERSION
-  spec.summary = "Ruby on Rails page view counter"
 
   spec.description = <<~TEXT
-    Paulie is the silent mobster standing at the entrance
-    of your page, closely watching every visitor and logging it to the database"
+    Paulie Lombardo is a simple, lightweight Ruby on Rails page view counter.
   TEXT
 
   spec.homepage = "https://github.com/stadniklksndr/paulie_lombardo"
@@ -29,4 +27,9 @@ Gem::Specification.new do |spec|
 
   spec.metadata["source_code_uri"] = "https://github.com/stadniklksndr/paulie_lombardo"
   spec.metadata["changelog_uri"] = "https://github.com/stadniklksndr/paulie_lombardo/blob/master/CHANGELOG.md"
+
+  spec.summary = <<~TEXT
+    Records each view in the database and provides a simple way
+    to track how many times a resource has been viewed.
+  TEXT
 end
