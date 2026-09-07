@@ -1,4 +1,4 @@
-[![Gem Version](https://badge.fury.io/rb/paulie_lombardo.svg)](https://badge.fury.io/rb/paulie_lombardo)
+[![Gem Version](https://badge.fury.io/rb/paulie_lombardo.svg?v=1)](https://rubygems.org/gems/paulie_lombardo)
 [![CI](https://github.com/stadniklksndr/paulie_lombardo/actions/workflows/ci.yml/badge.svg)](https://github.com/stadniklksndr/paulie_lombardo/actions/workflows/ci.yml)
 
 # Paulie Lombardo 🕵️‍♂️
