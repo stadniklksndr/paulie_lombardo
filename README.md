@@ -8,7 +8,7 @@
 
 🔍 **Looking for a simple Rails page view counter?**
 
-If you are looking for an **impressionist alternative** or need to **track daily page views in Rails**, Paulie is built specifically for this job. Unlike heavy analytics engines or gems that require Redis/Memcached infrastructure, **PaulieLombardo is a simple Rails page view counter that relies purely on ActiveRecord** (PostgreSQL, MySQL, SQLite).
+If you are looking to track daily and unique page views in Rails, **PaulieLombardo** is built specifically for this job. Unlike heavy analytics engines or gems that rely on Redis/Memcached infrastructure, **PaulieLombardo** is a lightweight Rails page view counter powered purely by ActiveRecord (PostgreSQL, MySQL, SQLite).
 
 <br>
 
@@ -146,6 +146,27 @@ When a request is processed:
 * Once logged in, view uniqueness is tracked directly by `:user_id` across different sessions, devices, or browsers.
   
 **Note:** *If Warden is not present or the user is a guest, **PaulieLombardo** gracefully falls back to browser session and request fingerprinting (session_hash / request_hash).*
+
+
+<br>
+
+## Maintenance & Data Retention (`paulie_notes`)
+
+Since `paulie_notes` stores visit history, you may periodically need to prune obsolete records (e.g., visits older than 6 to 12 months) to keep storage usage low.
+
+> ⚠️ **Important:** Do NOT use `PaulieNote.where(...).destroy_all`. Calling `.destroy_all` triggers ActiveRecord callbacks, which will decrement the `paulie_notes_count` counter cache on the associated models and ruin your visit stats. Use `delete_all` in batches instead.
+
+### Recommended Cleanup Script
+
+Run this via `rails console` or inside a background job (e.g., `Delayed::Job` / `Sidekiq`):
+
+```ruby
+# Safely prune records older than 180 days in batches of 10,000
+PaulieNote.where("created_at < ?", 180.days.ago).in_batches(of: 10_000) do |relation|
+  relation.delete_all
+  sleep(0.1) # Throttle to prevent database IO spikes
+end
+```
 
 <br>
 
